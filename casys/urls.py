@@ -10,8 +10,8 @@ urlpatterns = [
     path('create-shipment/', views.AddShipment, name="create-shipment"),
     path('create-received/', views.AddReceived, name="create-received"),
 
-    path('client/', views.ClientView, name="client"),
-    path('', views.OrderView, name="orders"),
+    path('client/', views.OrderView, name="order"),
+    path('', views.ClientView, name="client"),
     path('orders/<int:pk>/', views.OrderSummaryView.as_view(), name='order-summary'),
 
     path('login/', views.loginPage, name='login'),
