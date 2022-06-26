@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+<h1>Products</h1>
+
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Medium</th>
+      <th scope="col">Size</th>
+      <th scope="col">Price</th>
+      <th scope="col">Quantity</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for x in product %}
+    <tr>
+      <td>{{x.product_name }}</td>
+      <td>{{x.art_medium }}</td>
+      <td>{{x.size }}</td>
+      <td>{{x.price }}</td>
+      <td>{{x.quantity }}</td>
+      <td><a href="{% url 'casys:create-order' %}" class="btn-primary">Order Now</a></td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table> 
+
+<a href="{% url 'casys:create-product' %}" class="btn btn-primary">Add Products</a>
+
+{% endblock %}

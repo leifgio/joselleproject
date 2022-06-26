@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Client Profile {% endblock %}
+
+{% block content %}
+
+<h1>Client Profile</h1>
+
+ <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">First Name</th>
+      <th scope="col">Surname</th>
+      <th scope="col">Address</th>
+      <th scope="col">Contact Number</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    {% for x in client %}
+    <tr>
+      <td>{{x.firstname }}</td>
+      <td>{{x.surname }}</td>
+      <td>{{x.address }}</td>
+      <td>{{x.contact_number }}</td>
+      <td> 
+        <a href="{% url 'casys:create-client' %}" class="btn btn-primary">Update Profile</a>
+      </td>
+      <td> 
+        <a href="{% url 'casys:create-client' %}" class="btn btn-danger">Delete Profile</a>
+      </td>
+    </tr>
+    {% endfor %}
+
+  </tbody>
+</table> 
+
+<a href="{% url 'casys:create-client' %}" class="btn btn-primary">Sign up</a>
+{% endblock %}
