@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}Form{% endblock %}
+
+{% block content %}
+
+</form>
+	<form id="review" method="POST">
+    <fieldset>
+	<h1><center>Register Now!</center></h1>
+	<label>First Name: 
+		<input type="text" id="first" name="first" placeholder="Enter your first name here.">  
+	</label>
+    <br>
+    <label>Surname: 
+        <input type="text" id="last" name="last" placeholder="Enter your last name here.">
+    <br>
+    <label>address: 
+        <input type="text" id="address" name="address" placeholder="Enter your number here.">
+    </label>
+    <br>
+    <label>contact number: 
+        <input type="text" id="contact" name="contact" placeholder="Enter your number here.">
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="submit" id="btn" name="btn" value="Submit">
+    </label>
+    </fieldset>
+  {% csrf_token %}
+	</form>
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

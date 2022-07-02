@@ -4,7 +4,6 @@
 {% block content %}
 
 <form method="POST">
-  {% csrf_token %}
   <div class="card card-body">
     {% for x in form %}
     {{x.label}}
@@ -12,6 +11,7 @@
     {% endfor %}
     <input type="submit" name="submit">
   </div>
+  {% csrf_token %}
 </form>
 
 {% if form.errors %}

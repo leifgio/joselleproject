@@ -30,7 +30,7 @@
       <td>{{x.gcash_number }}</td>
       <td>{{x.gcash_name }}</td>
       <td>{{x.proof_of_payment }}</td>
-      <td><a href="{% url 'casys:create-order' %}">Cancel Order</a><td> 
+      <td><a href="{% url 'casys:delete-order' x.id %}">Cancel Order</a><td> 
     </tr>
     {% endfor %}
 

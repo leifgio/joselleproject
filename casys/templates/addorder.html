@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% block title %}Form{% endblock %}
+
+{% block content %}
+
+</form>
+  {% csrf_token %}
+	<form id="review" method="POST">
+    <fieldset>
+	<h1><center>Register Now!</center></h1>
+	<label>User Information: 
+		<input type="text" id="first" name="user_information" placeholder="Enter your first name here.">  
+	</label>
+    <br>
+    <label>Product name: 
+        <input type="text" id="last" name="product_name" placeholder="Enter your last name here.">
+    <br>
+    <label>Reference picture: 
+        <input type="text" id="address" name="referece_picture" placeholder="Enter your number here.">
+    </label>
+    <br>
+    <label>Courier: 
+        <input type="text" id="contact" name="courier" placeholder="Enter your number here.">
+    </label>
+    <label>Gcash number: 
+        <input type="text" id="contact" name="gcash_number" placeholder="Enter your number here.">
+    </label>
+    <label>Gcash name: 
+        <input type="text" id="contact" name="gcash_name" placeholder="Enter your number here.">
+    </label>
+    <label>Proof of payment: 
+        <input type="text" id="contact" name="proof_of_payment" placeholder="Enter your number here.">
+    </label>
+    <br>
+    <br>
+    <label>
+        <input type="submit" id="btn" name="btn" value="Submit">
+    </label>
+    </fieldset>
+    {% csrf_token %}
+	</form>
+
+{% if form.errors %}
+    {% for field in form %}
+        {% for error in field.errors %}
+            <div class="alert alert-danger">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endfor %}
+    {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+            <strong>{{ error|escape }}</strong>
+        </div>
+    {% endfor %}
+{% endif %}
+
+{% endblock %}

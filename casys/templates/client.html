@@ -25,10 +25,10 @@
       <td>{{x.address }}</td>
       <td>{{x.contact_number }}</td>
       <td> 
-        <a href="{% url 'casys:create-client' %}" class="btn btn-primary">Update Profile</a>
+        <a href="{% url 'casys:update-client' x.id %}" class="btn btn-primary">Update Profile</a>
       </td>
       <td> 
-        <a href="{% url 'casys:create-client' %}" class="btn btn-danger">Delete Profile</a>
+        <a href="{% url 'casys:delete-client' x.id %}" class="btn btn-danger">Delete Profile</a>
       </td>
     </tr>
     {% endfor %}

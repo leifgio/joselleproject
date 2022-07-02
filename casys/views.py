@@ -21,10 +21,6 @@ def ClientView(request):
     queries = {'client': client}
     return render(request, "client.html", queries)
 
-class OrderSummaryView(generic.DetailView):
-    model = Order
-    template_name = 'order-summary.html'
-
 def ProductView(request):
     product = Product.objects.all()
     queries = {'product': product}
@@ -50,6 +46,7 @@ def AddOrder(request):
         order = CreateOrder(request.POST)
         if order.is_valid():
             order.save()
+            redirect('casys:client')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -79,6 +76,31 @@ def AddProduct(request):
         if product.is_valid():
             product.save()
     value = {'form':form}
+    return render(request, 'create.html',value)
+
+def UpdateClient(request,pk):
+    updateditem = Client.objects.get(id=pk)
+    form = CreateClient(instance=updateditem)
+    if request.method == "POST":
+        client = CreateClient(request.POST,instance=updateditem)
+        if client.is_valid:
+            client.save()
+
+    value = {'form':form}
+    return render(request, 'create.html',value)
+
+def DeleteClient(request,pk):
+    deleteclient = Client.objects.get(id=pk)
+    if request.method == "POST":
+        deleteclient.delete()
+    value = {'item':deleteclient}
+    return render(request, 'create.html',value)
+
+def DeleteOrder(request,pk):
+    deleteorder = Order.objects.get(id=pk)
+    if request.method == "POST":
+        deleteorder.delete()
+    value = {'item':deleteorder}
     return render(request, 'create.html',value)
 
 def loginPage(request):
