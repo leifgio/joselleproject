@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}Form{% endblock %}
+
+{% block content %}
+
+<h3>Recipient</h3>
+{{ product_receive.recipient_name }}
+<br>  
+<h3>Order Identification</h3> 
+{{ product_receive.order_name }}
+<h3>Feedback</h3>
+{{ product_receive.feedback }}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}Shipped products and Feedbacks{% endblock %}
+
+{% block content %}
+
+<h1>Shipped products and Feedbacks</h1>
+
+{% for x in feedback %}
+<a href="/feedback/{{x.id}}">{{ x.order_name }}</a><br>
+{% endfor %}
+
+<hr>
+<a href="{% url 'casys:create-received' %}" class="btn btn-primary">Submit feedback</a>
+{% endblock %}

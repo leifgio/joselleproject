@@ -2,6 +2,12 @@ from django.forms import ModelForm
 from .models import *
 from django import forms
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+class TimeInput(forms.DateInput):
+    input_type = 'time'
+
 class CreateClient(ModelForm):
     class Meta:
         model = Client
@@ -20,10 +26,11 @@ class CreateOrder(ModelForm):
         
 class CreateShipment(ModelForm):
     class Meta:
+        widgets = {'date_to_ship':DateInput(), 'time_to_ship':TimeInput()}
         model = Shipment
         fields = ['order_name', 'date_to_ship', 'time_to_ship']
 
 class CreateReceived(ModelForm):
     class Meta:
         model = Product_Receive
-        fields = ['recipient_name', 'proof_received', 'feedback']
+        fields = ['recipient_name', 'order_name', 'proof_received', 'feedback']

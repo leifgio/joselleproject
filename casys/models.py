@@ -27,7 +27,7 @@ class Order(models.Model):
     product_name = models.ForeignKey(Product, on_delete = models.CASCADE)
     reference_picture = models.CharField(max_length=300)
     courier = models.CharField(max_length=300, choices=COURIER)
-    gcash_number = PhoneNumberField(null=False,blank=False,unique=True)
+    gcash_number = PhoneNumberField(null=False,blank=False)
     gcash_name = models.CharField(max_length=300)
     proof_of_payment = models.CharField(max_length=300)
 
@@ -35,18 +35,18 @@ class Order(models.Model):
         return '%s-%s' % (self.pk, self.user_information)
 
 class Shipment(models.Model):
-	order_name = models.OneToOneField(Order, on_delete = models.CASCADE)
+	order_name = models.ForeignKey(Order, on_delete = models.CASCADE)
 	date_to_ship = models.DateField()
 	time_to_ship = models.TimeField(auto_now = False, auto_now_add = False)
 
 	def __str__(self):
-		return '%s-%s' % (self.order, self.pk)
+		return '%s-%s' % (self.order_name, self.pk)
 
 class Product_Receive(models.Model):
 	recipient_name =  models.ForeignKey(Client, on_delete = models.CASCADE)
+	order_name = models.ForeignKey(Order, on_delete = models.CASCADE)
 	proof_received = models.CharField(max_length=300)
-
 	feedback = models.TextField()
 
 	def __str__(self):
-		return '%s-%s' % (self.recipient_name, self.pk)
+		return self.recipient_name

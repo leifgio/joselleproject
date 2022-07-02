@@ -1,4 +1,5 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import get_object_or_404,render,redirect
+from django.utils import timezone
 from .models import Client, Order, Shipment, Product_Receive, Product
 
 from django.views import generic
@@ -31,12 +32,26 @@ def ShipmentView(request):
     queries = {'shipment': shipment}
     return render(request, "shipments.html", queries)
 
+class FeedbackDetail(generic.DetailView):
+    model = Product_Receive
+    template_name = 'feedback-detail.html'
+
+def FeedbackView(request):
+    feedback = Product_Receive.objects.all()
+    queries = {'feedback': feedback}
+    return render(request, "feedback.html", queries)
+
+def FeedbackDetails(request, feedback_id):
+    feedback = get_object_or_404(Product_Receive, pk=feedback_id)
+    return render(request, 'feedback-detail.html', {'feedback': feedback})
+
 def AddClient(request):
     form = CreateClient()
     if request.method == 'POST':
         client = CreateClient(request.POST)
         if client.is_valid():
             client.save()
+            return redirect('casys:client')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -46,7 +61,7 @@ def AddOrder(request):
         order = CreateOrder(request.POST)
         if order.is_valid():
             order.save()
-            redirect('casys:client')
+            return redirect('casys:order')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -56,6 +71,7 @@ def AddShipment(request):
         shipment = CreateShipment(request.POST)
         if shipment.is_valid():
             shipment.save()
+            return redirect('casys:order')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -65,6 +81,7 @@ def AddReceived(request):
         received = CreateReceived(request.POST)
         if received.is_valid():
             received.save()
+            return redirect('casys:feedback')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -75,6 +92,7 @@ def AddProduct(request):
         product = CreateProduct(request.POST)
         if product.is_valid():
             product.save()
+            return redirect('casys:products')
     value = {'form':form}
     return render(request, 'create.html',value)
 
@@ -85,6 +103,7 @@ def UpdateClient(request,pk):
         client = CreateClient(request.POST,instance=updateditem)
         if client.is_valid:
             client.save()
+            return redirect('casys:client')
 
     value = {'form':form}
     return render(request, 'create.html',value)
@@ -93,6 +112,7 @@ def DeleteClient(request,pk):
     deleteclient = Client.objects.get(id=pk)
     if request.method == "POST":
         deleteclient.delete()
+        return redirect('casys:client')
     value = {'item':deleteclient}
     return render(request, 'create.html',value)
 
@@ -100,6 +120,7 @@ def DeleteOrder(request,pk):
     deleteorder = Order.objects.get(id=pk)
     if request.method == "POST":
         deleteorder.delete()
+        return redirect('casys:order')
     value = {'item':deleteorder}
     return render(request, 'create.html',value)
 

@@ -3,7 +3,6 @@ from django.urls import path, include
 
 app_name = 'casys'
 urlpatterns = [
-    path('products/', views.ProductView, name="products"),
     path('create-client/', views.AddClient, name="create-client"),
     path('create-product/', views.AddProduct, name="create-product"),
     path('create-order/', views.AddOrder, name="create-order"),
@@ -16,6 +15,9 @@ urlpatterns = [
     path('delete-order/<str:pk>/', views.DeleteOrder, name="delete-order"),
 
     path('order/', views.OrderView, name="order"),
+    path('products/', views.ProductView, name="products"),
+    path('feedback', views.FeedbackView, name="feedback"),
+    path('feedback/<int:pk>/', views.FeedbackDetail.as_view(), name='feedback-detail'),
     path('', views.ClientView, name="client"),
 
     path('login/', views.loginPage, name='login'),
