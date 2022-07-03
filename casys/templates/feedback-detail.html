@@ -10,4 +10,10 @@
 {{ product_receive.order_name }}
 <h3>Feedback</h3>
 {{ product_receive.feedback }}
+<h3>Proof</h3>
+
+  {% if product_receive.proof_received %}
+  <img src="{{ product_receive.proof_received.url }}" class="img-fluid"/>
+  {% endif %}
+
 {% endblock %}

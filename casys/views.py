@@ -41,10 +41,6 @@ def FeedbackView(request):
     queries = {'feedback': feedback}
     return render(request, "feedback.html", queries)
 
-def FeedbackDetails(request, feedback_id):
-    feedback = get_object_or_404(Product_Receive, pk=feedback_id)
-    return render(request, 'feedback-detail.html', {'feedback': feedback})
-
 def AddClient(request):
     form = CreateClient()
     if request.method == 'POST':
@@ -78,7 +74,7 @@ def AddShipment(request):
 def AddReceived(request):
     form = CreateReceived()
     if request.method == 'POST':
-        received = CreateReceived(request.POST)
+        received = CreateReceived(request.POST, request.FILES)
         if received.is_valid():
             received.save()
             return redirect('casys:feedback')
@@ -92,7 +88,7 @@ def AddProduct(request):
         product = CreateProduct(request.POST)
         if product.is_valid():
             product.save()
-            return redirect('casys:products')
+            return redirect('casys:product')
     value = {'form':form}
     return render(request, 'create.html',value)
 

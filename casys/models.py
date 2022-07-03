@@ -25,7 +25,7 @@ class Order(models.Model):
     COURIER = (('jt', 'J&T Express'), ('lm', 'lala move'), ('lbc', 'LBC Hari ng Padala'))
     user_information = models.ForeignKey(Client, on_delete = models.CASCADE)
     product_name = models.ForeignKey(Product, on_delete = models.CASCADE)
-    reference_picture = models.CharField(max_length=300)
+    reference_picture = models.ImageField(null=True, blank=True, upload_to="images/")
     courier = models.CharField(max_length=300, choices=COURIER)
     gcash_number = PhoneNumberField(null=False,blank=False)
     gcash_name = models.CharField(max_length=300)
@@ -45,7 +45,7 @@ class Shipment(models.Model):
 class Product_Receive(models.Model):
 	recipient_name =  models.ForeignKey(Client, on_delete = models.CASCADE)
 	order_name = models.ForeignKey(Order, on_delete = models.CASCADE)
-	proof_received = models.CharField(max_length=300)
+	proof_received = models.ImageField(null=True, blank=True, upload_to="images/")
 	feedback = models.TextField()
 
 	def __str__(self):
