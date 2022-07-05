@@ -14,11 +14,12 @@ urlpatterns = [
     path('delete-client/<str:pk>/', views.DeleteClient, name="delete-client"),
     path('delete-order/<str:pk>/', views.DeleteOrder, name="delete-order"),
 
+    path('', views.HomePage, name="home"),
     path('order/', views.OrderView, name="order"),
     path('products/', views.ProductView, name="products"),
     path('feedback/', views.FeedbackView, name="feedback"),
     path('feedback/<int:pk>/', views.FeedbackDetail.as_view(), name='feedback-detail'),
-    path('', views.ClientView, name="client"),
+    path('client/', views.ClientView, name="client"),
 
     path('login/', views.loginPage, name='login'),
 ]

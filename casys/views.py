@@ -9,8 +9,8 @@ from casys.forms import CreateClient, CreateProduct, CreateOrder, CreateShipment
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
-def MainPage(request):
-	return render(request, 'mainpage.html')
+def HomePage(request):
+	return render(request, 'home.html')
 
 def OrderView(request):
     order = Order.objects.all()
