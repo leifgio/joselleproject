@@ -88,7 +88,7 @@ def AddProduct(request):
         product = CreateProduct(request.POST)
         if product.is_valid():
             product.save()
-            return redirect('casys:product')
+            return redirect('casys:products')
     value = {'form':form}
     return render(request, 'create.html',value)
 

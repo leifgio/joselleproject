@@ -16,7 +16,7 @@ urlpatterns = [
 
     path('order/', views.OrderView, name="order"),
     path('products/', views.ProductView, name="products"),
-    path('feedback', views.FeedbackView, name="feedback"),
+    path('feedback/', views.FeedbackView, name="feedback"),
     path('feedback/<int:pk>/', views.FeedbackDetail.as_view(), name='feedback-detail'),
     path('', views.ClientView, name="client"),
 
