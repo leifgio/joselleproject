@@ -13,7 +13,7 @@
 <h3>Proof</h3>
 
   {% if product_receive.proof_received %}
-  {{ product_receive.proof_received.url }}
+  <img src="{{ product_receive.proof_received.url }}" class="img-fluid">
   {% endif %}
 
 {% endblock %}

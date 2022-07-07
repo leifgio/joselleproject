@@ -9,7 +9,7 @@ class Client(models.Model):
 	contact_number = PhoneNumberField(null=False,blank=False,unique=True)
     
 	def __str__(self):
-         return '%s-%s' % (self.surname, self.firstname)
+         return f'{self.firstname} {self.surname}'
 
 class Product(models.Model):
 	product_name = models.CharField(max_length=24, unique=True)
@@ -49,4 +49,4 @@ class Product_Receive(models.Model):
 	feedback = models.TextField()
 
 	def __str__(self):
-		return self.recipient_name
+		return f'{self.recipient_name}'
